@@ -1,0 +1,23 @@
+{
+  "name": "ramo-cume-delivery",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel ./src/index.html"
+  },
+  "dependencies": {
+    "less": "^3.10.3",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.2.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
+    "typescript": "^3.6.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "@types/react-router-dom": "^5.1.0"
+  },
+  "private": true
+}
