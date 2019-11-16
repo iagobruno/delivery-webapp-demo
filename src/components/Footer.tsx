@@ -7,22 +7,22 @@ const Footer: React.FunctionComponent = () => (
     <div className="footer__columns center">
       <div>
         <div className="footer__column__title">Horários de Funcionamento</div>
-        <p>
+        <div>
           {Object.entries(configs.deliveryTime).map(([dayOfWeek, hours]) => (
-            <p>{dayOfWeek}: {hours === null ? 'Não abre' : hours}</p>
+            <p key={dayOfWeek}>{dayOfWeek}: {hours === null ? 'Não abre' : hours}</p>
           ))}
-        </p>
+        </div>
       </div>
       <div>
         <div className="footer__column__title">Como chegar</div>
-        <p>
+        <div>
           <img className="mapImage" src="/map.jpg" /><br/>
           {configs.randomPlace} <br/> Fone {configs.fakePhone}
-        </p>
+        </div>
       </div>
       <div>
         <div className="footer__column__title">Formas de pagamento</div>
-        <p>
+        <div>
           Dinheiro:<br/>
           <img src="MONEY.webp" height={26} /><br/>
           Cartão de Crédito:<br/>
@@ -32,7 +32,7 @@ const Footer: React.FunctionComponent = () => (
           <img src="VSREST.webp" height={26} /><br/><br/>
           Não aceitamos cheques.<br/>
           Aceitamos Ticket Restaurante, VisaVale e Sodexo.
-        </p>
+        </div>
       </div>
     </div>
     <div className="footer__infos">

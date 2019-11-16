@@ -29,12 +29,12 @@ export const menu: Array<PlateType> = [
         type: 'choice',
         limit: Infinity,
         options: [
-          { title: 'Bacon', price: 4.0 },
-          { title: 'Queijo Cheddar', price: 2.0 },
-          { title: 'Queijo Mussarela', price: 2.0 },
-          { title: 'Tomate e alface', price: 0, selectedByDefault: true },
-          { title: 'Ovo', price: 1.0 },
-          { title: 'Batata Palha', price: 2.0 },
+          { id: 1, title: 'Bacon', price: 4.0 },
+          { id: 2, title: 'Queijo Cheddar', price: 2.0 },
+          { id: 3, title: 'Queijo Mussarela', price: 2.0 },
+          { id: 4, title: 'Tomate e alface', price: 0, selectedByDefault: true },
+          { id: 5, title: 'Ovo', price: 1.0 },
+          { id: 6, title: 'Batata Palha', price: 2.0 },
         ]
       }
     }
@@ -50,13 +50,13 @@ export const menu: Array<PlateType> = [
         atLeast: 1,
         limit: 1,
         options: [
-          { title: 'Calabresa', price: 17.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
-          { title: 'Portuguesa', price: 18.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
-          { title: 'Frango com catupiry', price: 17.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
-          { title: 'Muçarela', price: 16.99 },
-          { title: 'Napolitana', price: 17.99 },
-          { title: 'Brigadeiro', price: 18.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
-          { title: '4 Queijos', price: 16.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
+          { id: 7, title: 'Calabresa', price: 17.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
+          { id: 8, title: 'Portuguesa', price: 18.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
+          { id: 9, title: 'Frango com catupiry', price: 17.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
+          { id: 10, title: 'Muçarela', price: 16.99 },
+          { id: 11, title: 'Napolitana', price: 17.99 },
+          { id: 12, title: 'Brigadeiro', price: 18.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
+          { id: 13, title: '4 Queijos', price: 16.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
         ]
       },
     }
@@ -73,13 +73,13 @@ export const menu: Array<PlateType> = [
         atLeast: 1,
         limit: 2,
         options: [
-          { title: 'Calabresa', price: 22.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
-          { title: 'Portuguesa', price: 24.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
-          { title: 'Frango com catupiry', price: 22.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
-          { title: 'Muçarela', price: 20.99 },
-          { title: 'Napolitana', price: 22.99 },
-          { title: 'Brigadeiro', price: 25.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
-          { title: '4 Queijos', price: 20.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
+          { id: 14, title: 'Calabresa', price: 22.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
+          { id: 15, title: 'Portuguesa', price: 24.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
+          { id: 16, title: 'Frango com catupiry', price: 22.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
+          { id: 17, title: 'Muçarela', price: 20.99 },
+          { id: 18, title: 'Napolitana', price: 22.99 },
+          { id: 19, title: 'Brigadeiro', price: 25.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
+          { id: 20, title: '4 Queijos', price: 20.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
         ]
       },
     }
@@ -95,13 +95,13 @@ export const menu: Array<PlateType> = [
         atLeast: 1,
         limit: 2,
         options: [
-          { title: 'Calabresa', price: 32.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
-          { title: 'Portuguesa', price: 34.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
-          { title: 'Frango com catupiry', price: 32.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
-          { title: 'Muçarela', price: 29.99 },
-          { title: 'Napolitana', price: 32.99 },
-          { title: 'Brigadeiro', price: 34.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
-          { title: '4 Queijos', price: 29.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
+          { id: 21, title: 'Calabresa', price: 32.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
+          { id: 22, title: 'Portuguesa', price: 34.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
+          { id: 23, title: 'Frango com catupiry', price: 32.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
+          { id: 24, title: 'Muçarela', price: 29.99 },
+          { id: 25, title: 'Napolitana', price: 32.99 },
+          { id: 26, title: 'Brigadeiro', price: 34.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
+          { id: 27, title: '4 Queijos', price: 29.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
         ]
       },
     }
@@ -179,6 +179,7 @@ export const menu: Array<PlateType> = [
   {
     id: 15,
     title: 'Combo Hamburguer + Batata + Refrigerante',
+    description: `Pão artesanal da casa, blend de 110 gramas, picles, queijo prato, bacon, alface americana+ molho apimentado.`,
     image: 'https://image.freepik.com/fotos-gratis/hamburguer-com-refrigerante-e-batata-frita_23-2148273037.jpg',
     price: 14,
     fields: {
@@ -187,21 +188,23 @@ export const menu: Array<PlateType> = [
         atLeast: 0,
         limit: Infinity,
         options: [
-          { title: 'Bacon', price: 4.0 },
-          { title: 'Queijo cheddar', price: 2.0 },
-          { title: 'Queijo mussarela', price: 2.0 },
-          { title: 'Tomate e alface', price: 0, selectedByDefault: true },
-          { title: 'Ovo', price: 1.0 },
-          { title: 'Batata palha', price: 2.0 },
+          { id: 28, title: 'Bacon', price: 4.0 },
+          { id: 29, title: 'Queijo cheddar', price: 2.0 },
+          { id: 30, title: 'Queijo mussarela', price: 2.0 },
+          { id: 31, title: 'Tomate e alface', price: 0, selectedByDefault: true },
+          { id: 32, title: 'Ovo', price: 1.0 },
+          { id: 33, title: 'Batata palha', price: 2.0 },
         ]
       },
       'Opções extras': {
         type: 'choice',
+        atLeast: 1,
+        limit: Infinity,
         options: [
-          { title: 'Catchup', price: 1 },
-          { title: 'Barbecue', price: 1 },
-          { title: 'Maionese temperada', price: 1 },
-          { title: 'Mostarda', price: 1 },
+          { id: 34, title: 'Catchup', price: 1 },
+          { id: 35, title: 'Barbecue', price: 1 },
+          { id: 36, title: 'Maionese temperada', price: 1 },
+          { id: 37, title: 'Mostarda', price: 1 },
         ]
       },
       'Opções de bebida': {
@@ -209,8 +212,8 @@ export const menu: Array<PlateType> = [
         atLeast: 1,
         limit: 1,
         options: [
-          { title: 'Coca-Cola', price: 3, description: 'Lata 350 ml' },
-          { title: 'Guaraná antártica', price: 3, description: 'Lata 350 ml' },
+          { id: 38, title: 'Coca-Cola', price: 3, description: 'Lata 350 ml' },
+          { id: 39, title: 'Guaraná antártica', price: 3, description: 'Lata 350 ml' },
         ]
       },
     }
@@ -254,9 +257,10 @@ export interface PlateType {
   cantBeBoughtAlone?: boolean,
   /** Indica que o prato não pode ser comprado online, somente no estabelecimento. */
   cannotBePurchasedOnline?: boolean,
+  limitOfPlatesInBag?: number,
 }
 
-interface PlateField {
+export interface PlateField {
   type: 'choice',
   /** Quantidade máxima de itens que podem ser selecionados. */
   limit?: number,

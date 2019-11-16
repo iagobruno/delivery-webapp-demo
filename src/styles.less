@@ -21,7 +21,7 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 20px;
   font-weight: normal;
-  line-height: 1.5;
+  line-height: normal;
   color: #333;
   margin: 0;
   overflow-y: scroll;
@@ -41,12 +41,15 @@ body {
 
 .button {
   background-color: @primary-color;
+  border: none;
   border-radius: 5px;
   padding: 12px 18px;
   display: inline-block;
+  outline: none;
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: white;
 
   &:hover {
     background-color: lighten(@primary-color, 4%);
@@ -56,6 +59,13 @@ body {
   }
   &:focus {
     box-shadow: 0 0 0 4px fadeout(@primary-color, 60%);
+  }
+
+  &--big {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 16px 20px;
   }
 }
 
@@ -155,17 +165,17 @@ header {
     line-height: normal;
     margin-bottom: 8px;
   }
+}
 
-  .plate__discount {
-    color: #4ec353;
+.plate__discount {
+  color: #4ec353;
 
-    .plate__price {
-      display: inline-block;
-      margin-left: 12px;
-      font-size: 18px;
-      text-decoration: line-through;
-      color: #999;
-    }
+  .plate__price {
+    display: inline-block;
+    margin-left: 12px;
+    font-size: 18px;
+    text-decoration: line-through;
+    color: #999;
   }
 }
 
