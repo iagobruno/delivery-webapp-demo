@@ -25,10 +25,10 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
           </p>
         </div>
         <div className="col">
-          <div className="button">
+          <button className="matter-button-contained big">
             <img src="/logo-whatsapp.svg"/>
             <span>{configs.fakePhone}</span>
-          </div>
+          </button>
         </div>
       </div>
     </header>
