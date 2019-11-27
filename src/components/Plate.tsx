@@ -1,21 +1,25 @@
 import React from 'react'
 import { PlateType } from '../data'
+import { useStore } from '../store'
 import Price from './Price'
 
 type Props = PlateType;
 
-const Plate: React.FunctionComponent<Props> = (props) => {
+const Plate: React.FunctionComponent<Props> = (infos) => {
+  const { actions } = useStore()
+
   return (
     <div
-      className={`plate ${props.cannotBePurchasedOnline ? 'cannotBePurchasedOnline' : ''}`}
+      className={`plate ${infos.cannotBePurchasedOnline ? 'cannotBePurchasedOnline' : ''}`}
+      onClick={() => actions.openModal(infos)}
     >
-      {props.image && (
+      {infos.image && (
         <div className="plate__image__container">
-          <img className="plate__image" src={props.image} loading="lazy" />
+          <img className="plate__image" src={infos.image} loading="lazy" />
         </div>
       )}
-      <h3 className="plate__title">{props.title}</h3>
-      <Price value={props.price} discount={props.discount} />
+      <h3 className="plate__title">{infos.title}</h3>
+      <Price value={infos.priceEstimate || infos.price} discount={infos.discount} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { currency } from '../common/constants'
 
 type Props = {
-  value: number | null,
+  value: number | undefined,
   discount?: number,
   children?: never,
 }
@@ -11,7 +11,7 @@ const Price: React.FunctionComponent<Props> = ({ value, discount }) => (<>
   {typeof discount !== 'undefined' ? (
     // Tem desconto
     <div className="plate__discount">
-      {value === null ? (
+      {value === undefined ? (
         // Se NÃO tiver um preço inicial, mostrar o valor do desconto
         `-${currency.format(discount)} no preço final`
       ) : (

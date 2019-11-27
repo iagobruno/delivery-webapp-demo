@@ -231,3 +231,217 @@ footer {
   }
 
 }
+
+.plate-modal {
+  background-color: white;
+  box-shadow: 0 3px 8px 1px rgba(0,0,0,0.24);
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  max-height: 720px;
+  min-height: 360px;
+  height: 80vh;
+  z-index: 2;
+
+  &__container {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  &__backdrop {
+    background-color: rgba(0,0,0,.4);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  &__imagem {
+    border-radius: 5px 0 0 5px;
+    border-right: 1px solid #f4f4f4;
+    object-fit: cover;
+    display: block;
+    height: 100%;
+    width: 300px;
+  }
+
+  &__form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 560px;
+    height: 100%;
+  }
+
+  &__infos {
+    padding: 24px 32px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  &__close-button {
+    background: white url(../static/close-icon.svg) center no-repeat;
+    background-size: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    border-radius: 50px;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    z-index: 6;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 15px;
+    padding: 8px 8px 14px;
+  }
+
+  &__title {
+
+  }
+
+  &__description {
+    margin-top: 6px;
+    opacity: .7;
+  }
+
+  .plate__price,
+  .plate__discount {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+  &__choice-list {
+    margin: 24px 0;
+
+    &__title {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    &__tip {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    &__error {
+      margin-bottom: 10px;
+      font-size: 16px;
+      opacity: .7;
+      color: red;
+    }
+
+    &__item {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 10px 0;
+      
+      & > span {
+        padding-left: 36px !important;
+      }
+      
+      & > span > span {
+        display: block;
+      }
+      
+      &__title {
+        font-size: 18px;
+      }
+      &__description {
+        opacity: .7;
+      }
+      &__price {
+        font-weight: 600;
+      }
+    }
+  }
+
+
+  &__form__observations {
+    width: 100%;
+    margin: 20px 0;
+    display: block;
+
+    strong {
+      margin-bottom: 10px;
+      display: block;
+      font-size: 20px;
+    }
+    textarea {
+      border: none !important;
+      padding: 10px 16px !important;
+      resize: none;
+      border-radius: 5px !important;
+    }
+  }
+
+  &__buttons {
+    padding: 16px 32px 24px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  &__final-price {
+    padding-right: 16px;
+  }
+
+  &__form__submit {
+    height: auto;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  
+  &__repetition {
+    display: flex;
+    align-items: center;
+
+    button {
+      max-width: 36px;
+      padding: 0;
+      display: block !important;
+      width: 36px;
+      border: none;
+      min-width: 36px;
+      border-radius: 50px;
+      overflow: hidden;
+      font-size: 26px;
+    }
+    span {
+      padding: 0 6px;
+    }
+  }
+
+  .matter-checkbox span::before,
+  .matter-checkbox span::after,
+  .matter-radio span::after,
+  .matter-radio span::before, {
+    top: 4px !important;
+    bottom: 0;
+    margin: auto 0;
+  }
+  .matter-checkbox span::after {
+    top: -7px !important;
+  }
+  .matter-radio span::after {
+    top: -6px !important;
+  }
+}

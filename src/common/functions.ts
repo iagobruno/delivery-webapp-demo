@@ -1,4 +1,4 @@
-import { configs } from '../data'
+import { configs, PlateField, FieldOption, PlateType } from '../data'
 
 const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
 
@@ -24,4 +24,42 @@ export function checkIfBusinessIsOpen(schedule: BusinessSchedule): boolean {
   function format(hours: string) {
     return new Date(`${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()} ${hours.trim()}`).getTime()
   }
+}
+
+/**
+ * Fazer um loop em todos os campos e retornar somente os itens que
+ * são selecionados por padrão para povoar o estado inicial do Formik.
+ */
+export function getAllDefaultSelectedFieldOptions(fields: PlateType['fields'] = {}) {
+  const entries = Object.entries(fields)
+    .map(([key, field]) => {
+      return [key, field.options.filter(opt => opt.selectedByDefault === true)]
+    })
+
+  return Object.fromEntries(entries)
+}
+
+export type FormikValues = Record<string, FieldOption[]>
+
+/**
+ * Calcular o preço final com base nas opções escolhidas.
+ */
+export function calcFinalPrice(
+  initialPrice: number = 0,
+  formikValues: FormikValues = {},
+  repetition: number = 1,
+  discount: number = 0
+): number {
+  const fields = Object.values(formikValues)
+    .flat(1)
+    .filter(isObject)
+  const choicesPrice = fields.reduce((lastValue, item) => (
+    lastValue + (item.price || 0)
+  ), 0)
+
+  return (initialPrice + choicesPrice - discount) * repetition 
+}
+
+function isObject(obj: any) {
+  return typeof obj === 'object' && !Array.isArray(obj)
 }
