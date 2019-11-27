@@ -23,6 +23,7 @@ export const menu: Array<PlateType> = [
     id: 1,
     title: 'Hamburguer',
     price: 10,
+    priceEstimate: 15.99,
     image: 'https://st2.depositphotos.com/3957801/5642/i/450/depositphotos_56423065-stock-photo-bacon-burger.jpg',
     fields: {
       'Ingredientes': {
@@ -30,19 +31,30 @@ export const menu: Array<PlateType> = [
         limit: Infinity,
         options: [
           { id: 1, title: 'Bacon', price: 4.0 },
-          { id: 2, title: 'Queijo Cheddar', price: 2.0 },
-          { id: 3, title: 'Queijo Mussarela', price: 2.0 },
-          { id: 4, title: 'Tomate e alface', price: 0, selectedByDefault: true },
-          { id: 5, title: 'Ovo', price: 1.0 },
-          { id: 6, title: 'Batata Palha', price: 2.0 },
+          { id: 2, title: 'Queijo Cheddar', selectedByDefault: true },
+          { id: 4, title: 'Tomate e alface', selectedByDefault: true },
+          { id: 5, title: 'Ovo', selectedByDefault: true },
+          { id: 6, title: 'Batata Palha', price: 2.0, selectedByDefault: true },
         ]
-      }
+      },
+      'Opções extras': {
+        type: 'choice',
+        atLeast: 0,
+        limit: Infinity,
+        options: [
+          { id: 34, title: 'Catchup' },
+          { id: 35, title: 'Barbecue', price: 1 },
+          { id: 36, title: 'Maionese temperada' },
+          { id: 37, title: 'Mostarda' },
+        ]
+      },
     }
   },
   {
     id: 2,
-    title: 'Pizza Média (4 fatias)',
-    price: null,
+    title: 'Pizza Média (Um sabor)',
+    description: '4 fatias',
+    price: undefined,
     image: 'https://media.istockphoto.com/photos/slice-of-hot-pizza-picture-id519526540?k=6&m=519526540&s=612x612&w=0&h=ouy892vP2sk0z0lMouKBqo8YXtSgq9PdnAg-cvUd_YQ=',
     fields: {
       'Sabores': {
@@ -63,15 +75,16 @@ export const menu: Array<PlateType> = [
   },
   {
     id: 3,
-    title: 'Pizza Grande (6 fatias)',
-    price: null,
+    title: 'Pizza Grande (Um sabor)',
+    description: '6 fatias',
+    price: undefined,
     discount: 4,
     image: 'https://media.istockphoto.com/photos/slice-of-hot-pizza-picture-id519526540?k=6&m=519526540&s=612x612&w=0&h=ouy892vP2sk0z0lMouKBqo8YXtSgq9PdnAg-cvUd_YQ=',
     fields: {
       'Sabores': {
         type: 'choice',
         atLeast: 1,
-        limit: 2,
+        limit: 1,
         options: [
           { id: 14, title: 'Calabresa', price: 22.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
           { id: 15, title: 'Portuguesa', price: 24.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
@@ -85,15 +98,40 @@ export const menu: Array<PlateType> = [
     }
   },
   {
+    id: 18,
+    title: 'Pizza Grande (Dois sabores)',
+    description: '6 fatias',
+    price: undefined,
+    discount: 4,
+    image: 'https://media.istockphoto.com/photos/slice-of-hot-pizza-picture-id519526540?k=6&m=519526540&s=612x612&w=0&h=ouy892vP2sk0z0lMouKBqo8YXtSgq9PdnAg-cvUd_YQ=',
+    fields: {
+      'Sabores': {
+        type: 'choice',
+        atLeast: 2,
+        limit: 2,
+        options: [
+          { id: 14, title: 'Calabresa', price: 11.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
+          { id: 15, title: 'Portuguesa', price: 12.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
+          { id: 16, title: 'Frango com catupiry', price: 12.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
+          { id: 17, title: 'Muçarela', price: 9.99 },
+          { id: 18, title: 'Napolitana', price: 6.99 },
+          { id: 19, title: 'Brigadeiro', price: 12.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
+          { id: 20, title: '4 Queijos', price: 9.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
+        ]
+      },
+    }
+  },
+  {
     id: 4,
-    title: 'Pizza tamanho Família (8 fatias)',
-    price: null,
+    title: 'Pizza tamanho Família (Um sabor)',
+    description: '8 fatias',
+    price: undefined,
     image: 'https://media.istockphoto.com/photos/slice-of-hot-pizza-picture-id519526540?k=6&m=519526540&s=612x612&w=0&h=ouy892vP2sk0z0lMouKBqo8YXtSgq9PdnAg-cvUd_YQ=',
     fields: {
       'Sabores': {
         type: 'choice',
         atLeast: 1,
-        limit: 2,
+        limit: 1,
         options: [
           { id: 21, title: 'Calabresa', price: 32.99, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
           { id: 22, title: 'Portuguesa', price: 34.99, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
@@ -102,6 +140,29 @@ export const menu: Array<PlateType> = [
           { id: 25, title: 'Napolitana', price: 32.99 },
           { id: 26, title: 'Brigadeiro', price: 34.99, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
           { id: 27, title: '4 Queijos', price: 29.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
+        ]
+      },
+    }
+  },
+  {
+    id: 17,
+    title: 'Pizza tamanho Família (Dois sabores)',
+    description: '8 fatias',
+    price: undefined,
+    image: 'https://media.istockphoto.com/photos/slice-of-hot-pizza-picture-id519526540?k=6&m=519526540&s=612x612&w=0&h=ouy892vP2sk0z0lMouKBqo8YXtSgq9PdnAg-cvUd_YQ=',
+    fields: {
+      'Sabores': {
+        type: 'choice',
+        atLeast: 2,
+        limit: 2,
+        options: [
+          { id: 21, title: 'Calabresa', price: 16.5, description: 'Molho de tomate, mussarela, calabresa, cebola, azeitona e orégano.' },
+          { id: 22, title: 'Portuguesa', price: 17.5, description: 'Ovos, cebola, azeitona, ervilha, queijo e presunto.' },
+          { id: 23, title: 'Frango com catupiry', price: 15.99, description: 'Molho de tomate, mussarela, frango catupiry, tomate, azeitona e orégano.' },
+          { id: 24, title: 'Muçarela', price: 14.99 },
+          { id: 25, title: 'Napolitana', price: 16.5 },
+          { id: 26, title: 'Brigadeiro', price: 17.5, description: 'Leite condensado, chocolate e cobertura de granulados de chocolate.' },
+          { id: 27, title: '4 Queijos', price: 14.99, description: 'Mussarela, provolone, gorgonzola e catupiry.' },
         ]
       },
     }
@@ -181,7 +242,8 @@ export const menu: Array<PlateType> = [
     title: 'Combo Hamburguer + Batata + Refrigerante',
     description: `Pão artesanal da casa, blend de 110 gramas, picles, queijo prato, bacon, alface americana+ molho apimentado.`,
     image: 'https://image.freepik.com/fotos-gratis/hamburguer-com-refrigerante-e-batata-frita_23-2148273037.jpg',
-    price: 14,
+    price: 19,
+    priceEstimate: 20.99,
     fields: {
       'Ingredientes': {
         type: 'choice',
@@ -189,22 +251,21 @@ export const menu: Array<PlateType> = [
         limit: Infinity,
         options: [
           { id: 28, title: 'Bacon', price: 4.0 },
-          { id: 29, title: 'Queijo cheddar', price: 2.0 },
-          { id: 30, title: 'Queijo mussarela', price: 2.0 },
-          { id: 31, title: 'Tomate e alface', price: 0, selectedByDefault: true },
-          { id: 32, title: 'Ovo', price: 1.0 },
-          { id: 33, title: 'Batata palha', price: 2.0 },
+          { id: 29, title: 'Queijo cheddar', selectedByDefault: true },
+          { id: 31, title: 'Tomate e alface', selectedByDefault: true },
+          { id: 32, title: 'Ovo', selectedByDefault: true },
+          { id: 33, title: 'Batata palha', price: 2.0, selectedByDefault: true },
         ]
       },
       'Opções extras': {
         type: 'choice',
-        atLeast: 1,
+        atLeast: 0,
         limit: Infinity,
         options: [
-          { id: 34, title: 'Catchup', price: 1 },
+          { id: 34, title: 'Catchup' },
           { id: 35, title: 'Barbecue', price: 1 },
-          { id: 36, title: 'Maionese temperada', price: 1 },
-          { id: 37, title: 'Mostarda', price: 1 },
+          { id: 36, title: 'Maionese temperada' },
+          { id: 37, title: 'Mostarda' },
         ]
       },
       'Opções de bebida': {
@@ -212,8 +273,54 @@ export const menu: Array<PlateType> = [
         atLeast: 1,
         limit: 1,
         options: [
-          { id: 38, title: 'Coca-Cola', price: 3, description: 'Lata 350 ml' },
-          { id: 39, title: 'Guaraná antártica', price: 3, description: 'Lata 350 ml' },
+          { id: 38, title: 'Coca-Cola', description: 'Lata 350 ml' },
+          { id: 39, title: 'Guaraná antártica', description: 'Lata 350 ml' },
+        ]
+      },
+    }
+  },
+  {
+    id: 19,
+    title: 'Combo Hamburguer + Batata + Suco',
+    description: `Pão artesanal da casa, blend de 110 gramas, picles, queijo prato, bacon, alface americana+ molho apimentado.`,
+    image: 'https://image.freepik.com/fotos-gratis/hamburguer-com-refrigerante-e-batata-frita_23-2148273037.jpg',
+    price: 21,
+    priceEstimate: 22.99,
+    fields: {
+      'Ingredientes': {
+        type: 'choice',
+        atLeast: 0,
+        limit: Infinity,
+        options: [
+          { id: 28, title: 'Bacon', price: 4.0 },
+          { id: 29, title: 'Queijo cheddar', selectedByDefault: true },
+          { id: 31, title: 'Tomate e alface', selectedByDefault: true },
+          { id: 32, title: 'Ovo', selectedByDefault: true },
+          { id: 33, title: 'Batata palha', price: 2.0, selectedByDefault: true },
+        ]
+      },
+      'Opções extras': {
+        type: 'choice',
+        atLeast: 0,
+        limit: Infinity,
+        options: [
+          { id: 34, title: 'Catchup' },
+          { id: 35, title: 'Barbecue', price: 1 },
+          { id: 36, title: 'Maionese temperada' },
+          { id: 37, title: 'Mostarda' },
+        ]
+      },
+      'Opções de bebida': {
+        type: 'choice',
+        atLeast: 1,
+        limit: 1,
+        options: [
+          { id: 38, title: 'Suco de abacaxi', description: '300ml' },
+          { id: 39, title: 'Suco de goiaba', description: '300ml' },
+          { id: 40, title: 'Suco de graviola', description: '300ml' },
+          { id: 41, title: 'Suco de maracujá', description: '300ml' },
+          { id: 42, title: 'Suco de acerola', description: '300ml' },
+          { id: 43, title: 'Suco de caju', description: '300ml' },
         ]
       },
     }
@@ -231,8 +338,8 @@ export const menu: Array<PlateType> = [
 export const collections = {
   'PROMOÇÕES': menu.filter(plate => typeof plate.discount !== 'undefined').map(plate => plate.id),
   'Hamburguers': [1],
-  'Pizzas': [2, 3, 4],
-  'Combos': [15],
+  'Pizzas': [2, 3, 18, 4, 17],
+  'Combos': [15, 19],
   'Refrigerantes': [5, 6, 7, 8],
   'Sucos naturais': [12, 10, 11, 13, 14, 9],
 }
@@ -241,40 +348,46 @@ export const collections = {
 
 
 export interface PlateType {
-  id: number,
-  title: string,
-  description?: string,
-  image?: string,
-  /** Preço original do prato. Pode ser nulo caso o valor deva ser calculado pelas opções escolhidas. */
-  price: number | null,
+  id: number;
+  title: string;
+  description?: string;
+  image?: string;
+  /** Preço original do prato. */
+  price?: number;
+  /**
+   * !É usado somente para indicar ao usuário qual é a estimativa de preço final e NÃO será usado em nenhum cálculo!
+   * Use nos itens que o preço depende das escolhas do usuário.
+   */
+  priceEstimate?: number;
   /** Desconto em reais que será aplicado em cima do preço original. */
-  discount?: number,
+  discount?: number;
   /** Sabores, adições ou variações do prato para o usuário escolher. */
   fields?: {
-    [key: string]: PlateField,
-  },
+    [key: string]: PlateField;
+  };
   /** Indica que o prato não pode ser comprado sozinho. Use nos itens de acompanhamento (sucos). */
-  cantBeBoughtAlone?: boolean,
+  cantBeBoughtAlone?: boolean;
   /** Indica que o prato não pode ser comprado online, somente no estabelecimento. */
-  cannotBePurchasedOnline?: boolean,
-  limitOfPlatesInBag?: number,
+  cannotBePurchasedOnline?: boolean;
+  limitOfPlatesInBag?: number;
 }
 
 export interface PlateField {
-  type: 'choice',
+  type: 'choice';
   /** Quantidade máxima de itens que podem ser selecionados. */
-  limit?: number,
+  limit?: number;
   /** Quantidade mínima de itens que devem ser selecionados. Defina como 0 para o campo ser opcional ou maior que 1 para ser obrigatório. */
-  atLeast?: number,
+  atLeast?: number;
   /** Lista de itens que será mostrada ao usuário. */
-  options: Array<FieldOption>,
+  options: Array<FieldOption>;
 }
 
-interface FieldOption {
-  title: string,
-  description?: string,
+export interface FieldOption {
+  id: number;
+  title: string;
+  description?: string;
   /** Preço adicional desta opção que será somado ao valor final. */
-  price: number,
+  price?: number;
   /** Padrão: false */
-  selectedByDefault?: boolean,
+  selectedByDefault?: boolean;
 }
