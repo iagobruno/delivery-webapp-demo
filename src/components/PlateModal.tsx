@@ -25,7 +25,7 @@ const PlateModal: React.FunctionComponent = () => {
       <div className="plate-modal__backdrop" onClick={actions.closeModal} />
       <div className="plate-modal">
         <div className="plate-modal__close-button" onClick={actions.closeModal} />
-        <img className="plate-modal__imagem" src={plate.image} />
+        <img className="plate-modal__image" src={plate.image} />
         <Formik
           initialValues={{
             ...initialFieldValues,

@@ -4,6 +4,7 @@ import { Provider } from 'overmind-react'
 
 import store from '../store'
 import Home from '../pages/Home'
+import Menu from '../pages/Menu'
 import Header from './Header'
 import Footer from './Footer'
 import PlateModal from './PlateModal'
@@ -16,6 +17,7 @@ const App: React.FunctionComponent = () => (
       <main>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/cardapio" exact component={Menu} />
         </Switch>
       </main>
 

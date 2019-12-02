@@ -63,3 +63,27 @@ export function calcFinalPrice(
 function isObject(obj: any) {
   return typeof obj === 'object' && !Array.isArray(obj)
 }
+
+export function isEmptyObject(obj: Record<any, any>, valueToCheck: any = undefined) {
+  let result = true
+
+  for (const key in obj) {
+    if (obj[key] !== valueToCheck) {
+      result = false
+      break;
+    }
+  }
+
+  return result
+}
+
+/**
+ * @example
+ * convertArrayIntoObject(['um', 'dois']) // { 'um': undefined, 'dois': undefined }
+ */
+export function convertArrayIntoObject<I extends string>(arr: I[], defaultValue: any = null) {
+  return arr.reduce((obj, current) => ({
+    ...obj,
+    [current]: defaultValue
+  }), {})
+}

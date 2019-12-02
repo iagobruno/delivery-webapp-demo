@@ -6,7 +6,7 @@ import Collection from '../components/Collection'
 
 const Home: React.FunctionComponent = () => {
   return (
-    <Page>
+    <Page id="home">
       {Object.entries(collections).map(([title, listOfIds]) => (
         <Collection
           key={title}

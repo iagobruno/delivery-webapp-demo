@@ -21,6 +21,12 @@ a {
   }
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 body {
   background-color: #FFF;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -100,12 +106,17 @@ header {
     font-size: 56px;
     line-height: normal;
     margin: 0 0 8px;
+    color: white;
   }
 
   .header__infos__status {
     font-weight: bold;
     &.opened { color: #4ec353; }
     &.closed { color: #fc3122; }
+  }
+
+  a {
+    text-decoration: none !important;
   }
 }
 
@@ -123,6 +134,11 @@ header {
 
   &:active {
     background-color: darken(white, 12%);
+  }
+
+  &.cannotBePurchasedOnline {
+    opacity: .8;
+    pointer-events: none;
   }
 
   .plate__image__container {
@@ -156,6 +172,14 @@ header {
     line-height: normal;
     margin-bottom: 8px;
   }
+
+  .plate__badge {
+    background-color: #666;
+    border-radius: 5px;
+    padding: 2px 10px 4px;
+    font-size: 14px;
+    color: white;
+  }
 }
 
 .plate__discount {
@@ -170,7 +194,7 @@ header {
   }
 }
 
-section.collection {
+.collection {
   margin-bottom: 40px;
 
   .collection__title {
@@ -265,7 +289,7 @@ footer {
     z-index: 1;
   }
 
-  &__imagem {
+  &__image {
     border-radius: 5px 0 0 5px;
     border-right: 1px solid #f4f4f4;
     object-fit: cover;
@@ -444,4 +468,98 @@ footer {
   .matter-radio span::after {
     top: -6px !important;
   }
+}}
+
+.filters {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  margin: 15px -10px 20px;
+  padding: 18px 0 2px;
+  overflow: auto;
+  overflow-anchor: auto;
+  width: calc(100% + 20px);
+
+  .filters__item {
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    border: 1px solid #C9c9c9;
+
+    &::before {
+      content: attr(data-label);
+      font-size: 14px;
+      position: absolute;
+      max-width: 100%;
+      bottom: calc(100% + 4px);
+      left: 0px;
+    }
+
+    & > button {
+      background: transparent;
+      border: none;
+      border-radius: 50px;
+      position: relative;
+      height: 40px;
+      min-width: initial;
+      overflow: hidden;
+      outline: none;
+      padding: 8px 20px 10px;
+      line-height: 16px;
+      font-size: 16px;
+      color: #333;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: padding-left 400ms, padding-right 400ms, width 400ms;
+
+      &[disabled] {
+        width: 0;
+        padding: 0;
+      }
+    }
+
+    & > span {
+      border-right: 1px solid #C9c9c9;
+      height: 20px;
+      width: 0;
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  .filters__item.filters__item--filled {
+    border-color: @primary-color;
+
+    & > button:not([disabled]) {
+      background-color: @primary-color;
+      color: white;
+    }
+
+    & > span {
+      display: none;
+    }
+  }
+
+  .filters__item[data-label="Limpar"] > button {
+    padding: 7px 12px 11px 12px;
+    font-size: 28px;
+    line-height: 20px;
+  }
 }
+
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 0;
+  width: 100%;
+
+  strong {
+    font-size: 22px;
+    margin-bottom: 16px;
+    display: block;
+  }

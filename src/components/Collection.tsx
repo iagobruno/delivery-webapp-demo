@@ -6,7 +6,7 @@ import Plate from './Plate'
 type Props = {
   title: string,
   listOfIds: number[],
-  children?: ReactNode
+  children?: never,
 }
 
 const Collection: React.FunctionComponent<Props> = ({ title, listOfIds }) => {

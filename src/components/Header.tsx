@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { configs } from '../data'
 import { checkIfBusinessIsOpen } from '../common/functions'
 
@@ -15,7 +16,9 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
       {mode === 'expanded' && <img className="header__cover" src={configs.headerCover} />}
       <div className="header__alignBottom center">
         <div className="col">
-          <h1 className="header__title">{configs.title}</h1>
+          <Link to="/">
+            <h1 className="header__title">{configs.title}</h1>
+          </Link>
           <p className="header__infos">
             <span className={`header__infos__status ${isOpenNow ? 'opened' : 'closed'}`}>
               {isOpenNow ? 'Aberto!' : 'Fechado'}

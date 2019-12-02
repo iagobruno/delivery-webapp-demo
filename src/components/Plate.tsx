@@ -19,7 +19,10 @@ const Plate: React.FunctionComponent<Props> = (infos) => {
         </div>
       )}
       <h3 className="plate__title">{infos.title}</h3>
-      <Price value={infos.priceEstimate || infos.price} discount={infos.discount} />
+      <div className="row">
+        <Price value={infos.priceEstimate || infos.price} discount={infos.discount} />
+        {infos.cannotBePurchasedOnline && <span className="plate__badge">Somente na loja</span>}
+      </div>
     </div>
   );
 }
