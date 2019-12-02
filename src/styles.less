@@ -106,7 +106,6 @@ header {
     font-size: 56px;
     line-height: normal;
     margin: 0 0 8px;
-    color: white;
   }
 
   .header__infos__status {
@@ -117,6 +116,37 @@ header {
 
   a {
     text-decoration: none !important;
+    color: white;
+  }
+}
+
+.navbar {
+  background: fade(black, 10%);
+
+  .center {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  li a {
+    border: none;
+    border-radius: 0;
+    padding: 12px 20px 14px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: initial;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    height: initial;
+
+    &.active {
+      background-color: fade(@primary-color, 10%);
+      font-weight: 600;
+      color: @primary-color;
+    }
   }
 }
 
