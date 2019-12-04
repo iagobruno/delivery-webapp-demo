@@ -1,4 +1,5 @@
-import { configs, PlateField, FieldOption, PlateType } from '../data'
+import { configs } from '../data'
+import { BagItemInterface, PlateInterface, PlateModalFormikValues } from '../common/types'
 
 const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
 
@@ -30,7 +31,9 @@ export function checkIfBusinessIsOpen(schedule: BusinessSchedule): boolean {
  * Fazer um loop em todos os campos e retornar somente os itens que
  * são selecionados por padrão para povoar o estado inicial do Formik.
  */
-export function getAllDefaultSelectedFieldOptions(fields: PlateType['fields'] = {}) {
+export function getAllDefaultSelectedFieldOptions(
+  fields: PlateInterface['fields'] = {}
+): PlateModalFormikValues {
   const entries = Object.entries(fields)
     .map(([key, field]) => {
       return [key, field.options.filter(opt => opt.selectedByDefault === true)]
@@ -39,14 +42,12 @@ export function getAllDefaultSelectedFieldOptions(fields: PlateType['fields'] = 
   return Object.fromEntries(entries)
 }
 
-export type FormikValues = Record<string, FieldOption[]>
-
 /**
- * Calcular o preço final com base nas opções escolhidas.
+ * Calcular o preço do prato com base nas opções escolhidas.
  */
-export function calcFinalPrice(
+export function calcPrice(
   initialPrice: number = 0,
-  formikValues: FormikValues = {},
+  formikValues: PlateModalFormikValues = {},
   repetition: number = 1,
   discount: number = 0
 ): number {
@@ -57,7 +58,17 @@ export function calcFinalPrice(
     lastValue + (item.price || 0)
   ), 0)
 
-  return (initialPrice + choicesPrice - discount) * repetition 
+  return (initialPrice + choicesPrice - discount) * repetition
+}
+
+/**
+ * Somar o preço de todos os itens da sacola.
+ */
+export function sumAllPlatesPriceInBag(bagList: BagItemInterface[]): number {
+  return bagList.reduce(
+    (last, current) => last + (current.priceCache || 0),
+    0
+  )
 }
 
 function isObject(obj: any) {
@@ -86,4 +97,15 @@ export function convertArrayIntoObject<I extends string>(arr: I[], defaultValue:
     ...obj,
     [current]: defaultValue
   }), {})
+}
+
+export function convertOrderFieldsIntoDescription(fields: PlateModalFormikValues): string {
+  return Object.values(fields)
+    .flat(1)
+    .map(item => item.title)
+    .join(', ')
+}
+
+export function calcPercentage(percentage: number, total: number): number {
+  return (percentage / 100) * total
 }

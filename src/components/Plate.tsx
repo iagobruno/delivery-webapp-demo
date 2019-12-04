@@ -1,16 +1,16 @@
 import React from 'react'
-import { PlateType } from '../data'
+import { PlateInterface } from '../common/types'
 import { useStore } from '../store'
 import Price from './Price'
 
-type Props = PlateType;
+type Props = PlateInterface;
 
 const Plate: React.FunctionComponent<Props> = (infos) => {
   const { actions } = useStore()
 
   return (
     <div
-      className={`plate ${infos.cannotBePurchasedOnline ? 'cannotBePurchasedOnline' : ''}`}
+      className={`plate ${infos.canBePurchasedOnline === false ? 'cannotBePurchasedOnline' : ''}`}
       onClick={() => actions.openModal(infos)}
     >
       {infos.image && (
@@ -21,7 +21,7 @@ const Plate: React.FunctionComponent<Props> = (infos) => {
       <h3 className="plate__title">{infos.title}</h3>
       <div className="row">
         <Price value={infos.priceEstimate || infos.price} discount={infos.discount} />
-        {infos.cannotBePurchasedOnline && <span className="plate__badge">Somente na loja</span>}
+        {infos.canBePurchasedOnline === false && <span className="plate__badge">Somente na loja</span>}
       </div>
     </div>
   );

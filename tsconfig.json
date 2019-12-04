@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
     "target": "es2019",
     "lib": ["dom", "es2019"],
     "jsx": "react",

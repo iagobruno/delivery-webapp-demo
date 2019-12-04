@@ -1,3 +1,5 @@
+import { PlateInterface } from './common/types'
+
 export const configs = {
   title: 'Ramo Cumê',
   description: 'Uma simples descrição',
@@ -18,7 +20,7 @@ export const configs = {
   minimumPriceToConfirmPurchase: 0,
 }
 
-export const menu: Array<PlateType> = [
+export const menu: Array<PlateInterface> = [
   {
     id: 1,
     kind: 'Hamburguer',
@@ -179,7 +181,8 @@ export const menu: Array<PlateType> = [
     title: 'Coca-cola lata 350 ml',
     price: 3,
     image: 'https://decisaoentrega.fbitsstatic.net/img/p/refrigerante-coca-cola-lata-350ml-260249/427115-2.jpg?w=420&h=420&v=no-change',
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 6,
@@ -187,7 +190,8 @@ export const menu: Array<PlateType> = [
     title: 'Coca-cola 2l',
     price: 8,
     image: 'https://www.carone.com.br/media/catalog/product/cache/1/image/580x580/9df78eab33525d08d6e5fb8d27136e95/2/7/27324_B_1.jpg',
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 7,
@@ -195,7 +199,8 @@ export const menu: Array<PlateType> = [
     title: 'Guaraná antártica lata 350 ml',
     image: 'https://pedidos.teigicomidajaponesa.com.br/wp-content/uploads/2018/06/Guaran%C3%A1.jpg',
     price: 3,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 8,
@@ -203,7 +208,8 @@ export const menu: Array<PlateType> = [
     title: 'Guaraná antártica 2l',
     image: 'https://static.carrefour.com.br/medias/sys_master/images/images/hee/h1d/h00/h00/9276794142750.jpg',
     price: 8,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 9,
@@ -211,7 +217,8 @@ export const menu: Array<PlateType> = [
     title: 'Suco de caju 300ml',
     image: 'http://panchosdogueria.com.br/wp-content/uploads/2018/08/download-1.jpg',
     price: 5,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 10,
@@ -219,7 +226,8 @@ export const menu: Array<PlateType> = [
     title: 'Suco de goiaba 300ml',
     image: 'http://www.vinhais.com.br/Produtos/78960054000401.jpg',
     price: 5,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 11,
@@ -227,7 +235,8 @@ export const menu: Array<PlateType> = [
     title: 'Suco de graviola 300ml',
     image: 'http://www.nossopointlanches.com.br/app2/admin/produtos/graviola500ml.jpg',
     price: 5,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 12,
@@ -235,7 +244,8 @@ export const menu: Array<PlateType> = [
     title: 'Suco de abacaxi 300ml',
     image: 'http://www.picanhacia.com.br/wp-content/uploads/2017/02/2423714724-refresco-de-laranja-e-abacaxi-2.jpg',
     price: 5,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 13,
@@ -243,7 +253,8 @@ export const menu: Array<PlateType> = [
     title: 'Suco de maracujá 300ml',
     image: 'https://rechlanches.com.br/wp-content/uploads/2017/06/suco-de-maracuja-rechlanches-joinville.jpg',
     price: 5,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 14,
@@ -251,7 +262,8 @@ export const menu: Array<PlateType> = [
     title: 'Suco de acerola 300ml',
     image: 'https://wifireme.s3-sa-east-1.amazonaws.com/images/574f4483ec40f-295b2c431c910e09e5b9c3e29444d971.png',
     price: 5,
-    cantBeBoughtAlone: true,
+    canBeBoughtAlone: false,
+    showRating: false,
   },
   {
     id: 15,
@@ -349,7 +361,7 @@ export const menu: Array<PlateType> = [
     title: 'Mousse de chocolate com chantilly',
     image: 'https://t1.rg.ltmcdn.com/pt/images/3/3/0/mousse_de_chocolate_com_chantilly_8033_600.jpg',
     price: 10.50,
-    cannotBePurchasedOnline: true,
+    canBePurchasedOnline: false,
   }
 ]
 
@@ -364,52 +376,3 @@ export const collections = {
 }
 
 export const availableKinds = Array.from( new Set(menu.map(plate => plate.kind)) )
-
-
-
-
-export interface PlateType {
-  id: number;
-  kind: string;
-  title: string;
-  description?: string;
-  image?: string;
-  /** Preço original do prato. */
-  price?: number;
-  /**
-   * !É usado somente para indicar ao usuário qual é a estimativa de preço final e NÃO será usado em nenhum cálculo!
-   * Use nos itens que o preço depende das escolhas do usuário.
-   */
-  priceEstimate?: number;
-  /** Desconto em reais que será aplicado em cima do preço original. */
-  discount?: number;
-  /** Sabores, adições ou variações do prato para o usuário escolher. */
-  fields?: {
-    [key: string]: PlateField;
-  };
-  /** Indica que o prato não pode ser comprado sozinho. Use nos itens de acompanhamento (sucos). */
-  cantBeBoughtAlone?: boolean;
-  /** Indica que o prato não pode ser comprado online, somente no estabelecimento. */
-  cannotBePurchasedOnline?: boolean;
-  limitOfPlatesInBag?: number;
-}
-
-export interface PlateField {
-  type: 'choice';
-  /** Quantidade máxima de itens que podem ser selecionados. */
-  limit?: number;
-  /** Quantidade mínima de itens que devem ser selecionados. Defina como 0 para o campo ser opcional ou maior que 1 para ser obrigatório. */
-  atLeast?: number;
-  /** Lista de itens que será mostrada ao usuário. */
-  options: Array<FieldOption>;
-}
-
-export interface FieldOption {
-  id: number;
-  title: string;
-  description?: string;
-  /** Preço adicional desta opção que será somado ao valor final. */
-  price?: number;
-  /** Padrão: false */
-  selectedByDefault?: boolean;
-}

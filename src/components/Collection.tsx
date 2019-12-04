@@ -1,5 +1,6 @@
 import React, { ReactNode, useMemo } from 'react'
-import { menu, PlateType } from '../data'
+import { menu } from '../data'
+import { PlateInterface } from '../common/types'
 
 import Plate from './Plate'
 
@@ -32,7 +33,7 @@ function convertIdListToPlateList(listOfIds: Props['listOfIds']) {
     .map((id) => (
       menu.find(plate => plate.id === id)
     ))
-    .filter(plate => typeof plate !== 'undefined') as PlateType[]
+    .filter(plate => typeof plate !== 'undefined') as PlateInterface[]
 }
 
 export default Collection

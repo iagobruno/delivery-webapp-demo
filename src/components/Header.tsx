@@ -2,6 +2,8 @@ import React, { useMemo } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { configs } from '../data'
 import { checkIfBusinessIsOpen } from '../common/functions'
+// @ts-ignore
+import WhatsappIcon from '../../static/logo-whatsapp.svg'
 
 type Props = {
   mode?: 'compact' | 'expanded'
@@ -28,7 +30,7 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
           </div>
           <div className="col">
             <button className="matter-button-contained big">
-              <img src="/logo-whatsapp.svg"/>
+              <img src={WhatsappIcon} />
               <span>{configs.fakePhone}</span>
             </button>
           </div>
@@ -38,7 +40,7 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
       <nav className="navbar" role="navigation">
         <ul className="center">
           <li><NavLink exact to="/" className="matter-button-outlined">Página inicial</NavLink></li>
-          <li><NavLink to="cardapio" className="matter-button-outlined">Cardápio</NavLink></li>
+          <li><NavLink to="/cardapio" className="matter-button-outlined">Cardápio</NavLink></li>
         </ul>
       </nav>
     </>

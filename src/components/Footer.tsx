@@ -1,8 +1,20 @@
 import React from 'react'
 import { configs } from '../data'
+// @ts-ignore
+import Map from '../../static/map.jpg'
+// @ts-ignore
+import MoneyIcon from '../../static/MONEY.webp'
+// @ts-ignore
+import RDRESTIcon from '../../static/RDREST.webp'
+// @ts-ignore
+import RECIcon from '../../static/REC.webp'
+// @ts-ignore
+import DNRESTIcon from '../../static/DNREST.webp'
+// @ts-ignore
+import VSRESTIcon from '../../static/VSREST.webp'
 
 const Footer: React.FunctionComponent = () => (
-  <footer>
+  <footer className="footer">
     <h1 className="footer__title">{configs.title}</h1>
     <div className="footer__columns center">
       <div>
@@ -16,7 +28,7 @@ const Footer: React.FunctionComponent = () => (
       <div>
         <div className="footer__column__title">Como chegar</div>
         <div>
-          <img className="mapImage" src="/map.jpg" /><br/>
+          <img className="mapImage" src={Map} /><br/>
           {configs.randomPlace} <br/> Fone {configs.fakePhone}
         </div>
       </div>
@@ -24,12 +36,12 @@ const Footer: React.FunctionComponent = () => (
         <div className="footer__column__title">Formas de pagamento</div>
         <div>
           Dinheiro:<br/>
-          <img src="MONEY.webp" height={26} /><br/>
+          <img src={MoneyIcon} height={26} /><br/>
           Cartão de Crédito:<br/>
-          <img src="RDREST.webp" height={26} />{' '}
-          <img src="REC.webp" height={26} />{' '}
-          <img src="DNREST.webp" height={26} />{' '}
-          <img src="VSREST.webp" height={26} /><br/><br/>
+          <img src={RDRESTIcon} height={26} />{' '}
+          <img src={RECIcon} height={26} />{' '}
+          <img src={DNRESTIcon} height={26} />{' '}
+          <img src={VSRESTIcon} height={26} /><br/><br/>
           Não aceitamos cheques.<br/>
           Aceitamos Ticket Restaurante, VisaVale e Sodexo.
         </div>

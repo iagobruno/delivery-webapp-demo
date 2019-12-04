@@ -1,43 +1,76 @@
 import React, { useMemo } from 'react'
 import { useStore } from '../store'
 import { json } from 'overmind'
-import { configs, PlateField, FieldOption, PlateType } from '../data'
-import { useLockBodyScroll, useKeyPress } from '../common/hooks'
 import { currency } from '../common/constants'
-import { calcFinalPrice, FormikValues, getAllDefaultSelectedFieldOptions } from '../common/functions'
+import { useLockBodyScroll, useKeyPress } from '../common/hooks'
+import { calcPrice, getAllDefaultSelectedFieldOptions } from '../common/functions'
+import { BagItemInterface, PlateInterface, FieldOptionInterface, PlateFieldInterface } from '../common/types'
+// @ts-ignore
+import starIcon from '../../static/star-icon.svg'
 
-import { Formik, Form, useFormikContext } from 'formik'
+import { Formik, Form, Field, useFormikContext, FormikValues } from 'formik'
 import Price from './Price'
 
+/**
+ * Lembrete para o meu eu do futuro: Só nesse componente está acontecendo 6 loops a cada renderização
+ * e fazendo uma análise dá pra reduzir para 3 loops com uma refatoração de performance.
+ */
 const PlateModal: React.FunctionComponent = () => {
   const { state, actions } = useStore()
-  const plate = json(state.currentPlateModalInfos) as PlateType
+  const plate = json(state.currentPlateModalInfos) as BagItemInterface
 
   useLockBodyScroll()
   useKeyPress('Escape', actions.closeModal)
 
   const initialFieldValues = useMemo(() => (
-    getAllDefaultSelectedFieldOptions(plate.fields)
+    plate.chosenFields ?? getAllDefaultSelectedFieldOptions(plate.fields)
   ), [])
+
+  function handleSubmit(formValues) {
+    const { repetition, observations, ...fields } = formValues
+    const newItem = {
+      ...plate,
+      chosenFields: fields,
+      repetition,
+      observations,
+      priceCache: calcPrice(plate.price, fields, repetition, plate.discount)
+    }
+
+    if (state.itemIndexToReplace !== undefined) {
+      actions.replaceItemInBag({
+        updatedItem: newItem,
+        index: state.itemIndexToReplace
+      })
+    } else {
+      actions.addToBag(newItem)
+    }
+    actions.closeModal()
+  }
 
   return (
     <div className="plate-modal__container">
       <div className="plate-modal__backdrop" onClick={actions.closeModal} />
       <div className="plate-modal">
         <div className="plate-modal__close-button" onClick={actions.closeModal} />
-        <img className="plate-modal__image" src={plate.image} />
+        <div className="plate-modal__left-column">
+          <img className="plate-modal__image" src={plate.image} />
+          {plate.showRating !== false && (
+            <div className="plate-modal__rating">
+              <div className="stars">{Array(5).fill(null).map((_, index) => <img key={index} src={starIcon} />)}</div>
+              12 Avaliações
+            </div>
+          )}
+        </div>
         <Formik
           initialValues={{
             ...initialFieldValues,
-            observations: '',
-            repetition: 1,
+            observations: plate.observations ?? '',
+            repetition: plate.repetition ?? 1,
           }}
           validate={(values) => handleValidation(plate.fields, values)}
-          onSubmit={(values) => {
-            console.log(values)
-          }}
+          onSubmit={handleSubmit}
           validateOnMount
-        >{({ isValid, values, handleChange, setFieldValue }) => (
+        >{({ values, isValid, setFieldValue }) => (
           <Form className="plate-modal__form">
             <div className="plate-modal__infos">
               <h1 className="plate-modal__title">{plate.title}</h1>
@@ -54,10 +87,9 @@ const PlateModal: React.FunctionComponent = () => {
               )}
               <label className="plate-modal__form__observations matter-textfield-filled">
                 <strong>Algum comentário?</strong>
-                <textarea
+                <Field
+                  as="textarea"
                   name="observations"
-                  value={values.observations}
-                  onChange={handleChange}
                   placeholder="Exemplo: tirar a cebola, maionese à parte etc."
                 />
               </label>
@@ -82,13 +114,14 @@ const PlateModal: React.FunctionComponent = () => {
               </div>
               <div>
                 <div className="plate-modal__final-price">
-                  {currency.format(calcFinalPrice(plate.price, values, values.repetition, plate.discount))}
+                  {currency.format(calcPrice(plate.price, values as any, values.repetition, plate.discount))}
                 </div>
                 <button
                   type="submit"
                   className="plate-modal__form__submit matter-button-contained"
                   disabled={!isValid}
-                >Adicionar a sacola</button>
+                  children={state.itemIndexToReplace !== undefined ? 'Atualizar item' : 'Adicionar à sacola'}
+                />
               </div>
             </div>
           </Form>
@@ -98,8 +131,8 @@ const PlateModal: React.FunctionComponent = () => {
   )
 }
 
-function handleValidation(plateFields: PlateType['fields'] = {}, values: FormikValues) {
-  let errors = {}
+function handleValidation(plateFields: PlateInterface['fields'] = {}, values: FormikValues) {
+  let errors = {} as Record<string, any>
 
   // Percorrer todos os campos e verificar se o usuário escolheu o número certo de itens em cada campo
   Object.entries(plateFields).forEach(([label, field]) => {
@@ -118,7 +151,7 @@ function handleValidation(plateFields: PlateType['fields'] = {}, values: FormikV
   return errors
 }
 
-type ChoiceFieldProps = Pick<PlateField, 'limit' | 'atLeast' | 'options'> & {
+type ChoiceFieldProps = Pick<PlateFieldInterface, 'limit' | 'atLeast' | 'options'> & {
   /** Título da sessão que será mostrado para o usuário e também será usada como chave para identificar o campo no estado do Formik. */
   label: string;
 }
@@ -126,7 +159,7 @@ type ChoiceFieldProps = Pick<PlateField, 'limit' | 'atLeast' | 'options'> & {
 const ChoiceField: React.FC<ChoiceFieldProps> = ({ label, limit = Infinity, atLeast = 0, options }) => {
   const formik = useFormikContext<FormikValues>()
 
-  function handleChange(checked: boolean, item: FieldOption) {
+  function handleChange(checked: boolean, item: FieldOptionInterface) {
     let oldFieldValue = [...formik.values[label]]
     let newFieldValue;
 
@@ -184,7 +217,9 @@ const ChoiceField: React.FC<ChoiceFieldProps> = ({ label, limit = Infinity, atLe
 
 const PlateModalController: React.FC = () => {
   const { state } = useStore()
-  return state.plateModalIsOpen ? <PlateModal /> : null
+  return state.plateModalIsOpen && state.currentPlateModalInfos
+    ? <PlateModal />
+    : null
 }
 
 export default PlateModalController

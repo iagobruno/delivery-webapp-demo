@@ -54,9 +54,9 @@ const MenuPage: React.FunctionComponent = () => {
          className={filterItemClassName('price')}
          data-label="Ordenar por"
         >
-          <button className="matter-button-outlined" {...buttonAttrs('price', 'cheap')}>Mais baratos</button>
+          <button className="matter-button-outlined" {...buttonAttrs('price', 'cheap')}>Mais barato</button>
           <span />
-          <button className="matter-button-outlined" {...buttonAttrs('price', 'expensive')}>Mais caros</button>
+          <button className="matter-button-outlined" {...buttonAttrs('price', 'expensive')}>Mais caro</button>
         </div>
         <div
           className={filterItemClassName('withDiscount')}
