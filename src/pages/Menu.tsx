@@ -3,7 +3,7 @@ import { availableKinds } from '../data'
 import { useMenuFilter } from '../common/hooks'
 import { isEmptyObject } from '../common/functions'
 
-import Page from '../components/Page'
+import PageWrapper from '../components/PageWrapper'
 import Collection from '../components/Collection'
 import Plate from '../components/Plate'
 
@@ -28,7 +28,7 @@ const MenuPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Page id="menu">
+    <PageWrapper id="menu">
       <h1>Cardápio</h1>
       <div className="filters">
         <div
@@ -86,7 +86,7 @@ const MenuPage: React.FunctionComponent = () => {
           ))}
         </div>
       </div>
-    </Page>
+    </PageWrapper>
   )
 }
 

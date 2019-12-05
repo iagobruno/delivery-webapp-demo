@@ -11,7 +11,7 @@ import closeIcon from '../../static/close-icon.svg'
 // @ts-ignore
 import shoppingIcon from '../../static/shopping-basket.svg'
 
-import Page from '../components/Page'
+import PageWrapper from '../components/PageWrapper'
 import Price from '../components/Price'
 
 const CheckoutPage: React.FunctionComponent = () => {
@@ -27,7 +27,8 @@ const CheckoutPage: React.FunctionComponent = () => {
 
   /** Verifica se o pedido pode ser realizado ou não */
   const cantFinish: boolean = useMemo(() => (
-    bag.list.every(plate => plate.canBeBoughtAlone === false)
+    bag.list.every(plate => plate.canBeBoughtAlone === false) ||
+    platesPrice <= configs.minimumPriceToConfirmPurchase
   ), [bag.list.length])
 
   const finalPrice = useMemo(() => {
@@ -52,7 +53,7 @@ const CheckoutPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Page id="checkout">
+    <PageWrapper id="checkout">
       <h1>Checkout</h1>
       <div className="row">
         {bag.list.length === 0 ? (
@@ -113,7 +114,7 @@ const CheckoutPage: React.FunctionComponent = () => {
               <div className="card">
                 <div className="button-group">
                   <button className={`matter-button-${deliveryType === 'entrega' ? 'contained' : 'outlined'}`} onClick={() => setDeliveryType('entrega')}>Entrega</button>
-                  <button className={`matter-button-${deliveryType === 'retirada' ? 'contained' : 'outlined'}`}onClick={() => setDeliveryType('retirada')}>Retirar na loja</button>
+                  <button className={`matter-button-${deliveryType === 'retirada' ? 'contained' : 'outlined'}`} onClick={() => setDeliveryType('retirada')}>Retirar na loja</button>
                 </div>
               </div>
 
@@ -167,7 +168,7 @@ const CheckoutPage: React.FunctionComponent = () => {
           </>
         )}
       </div>
-    </Page>
+    </PageWrapper>
   )
 }
 

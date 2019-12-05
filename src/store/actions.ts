@@ -54,7 +54,7 @@ export const createOrder: Action<CreateOrderArg> = ({ state }, order) => {
     ...order,
     paid: true,
     status: 'pending',
-    preparationTimeEstimate: 10,
+    preparationTimeEstimate: 15,
     createdAt: new Date(),
   })
 }

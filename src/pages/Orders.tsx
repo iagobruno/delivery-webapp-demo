@@ -6,7 +6,7 @@ import { relativeTime, currency, orderStatus } from '../common/constants'
 import { OrderInterface } from '../common/types'
 import { configs } from '../data'
 
-import Page from '../components/Page'
+import PageWrapper from '../components/PageWrapper'
 
 const OrdersPage: React.FunctionComponent = () => {
   const { state: { orders }, actions } = useStore()
@@ -26,7 +26,7 @@ const OrdersPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Page id="orders">
+    <PageWrapper id="orders">
       <h1>Meus pedidos</h1>
       {orders.length === 0 ? (
         <div className="emptyState">
@@ -44,7 +44,7 @@ const OrdersPage: React.FunctionComponent = () => {
               <strong>Status: {
                 order.status === 'awaiting_payment' ? 'Aguardando confirmação de pagamento' :
                 order.status === 'pending' ? 'Pendente' :
-                order.status === 'in_preparation' ? `Em preparo. Estimativa: ${relativeTime.format(configs.averageDeliveryDuration, 'minutes').replace(/em /gi, '')}` :
+                order.status === 'in_preparation' ? `Em preparo. Estimativa: ${relativeTime.format(order.preparationTimeEstimate, 'minutes').replace(/em /gi, '')}` :
                 order.status === 'ready_for_delivery' ? (
                   order.deliveryType === 'retirada' ? 'Pronto para retirada!' : 'Aguardando o entregador'
                 ) :
@@ -62,7 +62,7 @@ const OrdersPage: React.FunctionComponent = () => {
           ))}
         </div>
       )}
-    </Page>
+    </PageWrapper>
   );
 }
 

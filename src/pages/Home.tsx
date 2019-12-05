@@ -1,12 +1,12 @@
 import React from 'react'
 import { collections } from '../data'
 
-import Page from '../components/Page'
+import PageWrapper from '../components/PageWrapper'
 import Collection from '../components/Collection'
 
-const Home: React.FunctionComponent = () => {
+const HomePage: React.FunctionComponent = () => {
   return (
-    <Page id="home">
+    <PageWrapper id="home">
       {Object.entries(collections).map(([title, listOfIds]) => (
         <Collection
           key={title}
@@ -14,8 +14,8 @@ const Home: React.FunctionComponent = () => {
           listOfIds={listOfIds}
         />
       ))}
-    </Page>
+    </PageWrapper>
   );
 }
 
-export default Home
+export default HomePage

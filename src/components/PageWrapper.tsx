@@ -6,12 +6,12 @@ type Props = {
   children?: React.ReactNode,
 }
 
-const Page: React.FunctionComponent<Props> = (props) => (
-  <div className={`page page--${props.id} ${props.className}`}>
+const PageWrapper: React.FunctionComponent<Props> = (props) => (
+  <div className={`page page--${props.id} ${props.className ?? ''}`}>
     <div className="center">
       {props.children}
     </div>
   </div>
 )
 
-export default Page
+export default PageWrapper

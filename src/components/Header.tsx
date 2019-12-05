@@ -44,7 +44,7 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
   );
 }
 
-const NavBar: React.FC = () => {
+const NavBar: React.FunctionComponent = () => {
   const { state: { orders } } = useStore()
   const undeliverableOrders = orders.filter(order => order.status !== 'delivered')
 
