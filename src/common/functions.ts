@@ -55,18 +55,15 @@ export function calcPrice(
     .flat(1)
     .filter(isObject)
   const choicesPrice = fields.reduce((lastValue, item) => (
-    lastValue + (item.price || 0)
+    lastValue + (item.price ?? 0)
   ), 0)
 
   return (initialPrice + choicesPrice - discount) * repetition
 }
 
-/**
- * Somar o preço de todos os itens da sacola.
- */
 export function sumAllPlatesPriceInBag(bagList: BagItemInterface[]): number {
   return bagList.reduce(
-    (last, current) => last + (current.priceCache || 0),
+    (last, current) => last + (current.priceCache ?? 0),
     0
   )
 }

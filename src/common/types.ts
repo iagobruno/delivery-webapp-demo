@@ -29,9 +29,9 @@ export interface PlateFieldInterface {
   type: 'choice';
   /** Quantidade máxima de itens que podem ser selecionados. */
   limit?: number;
-  /** Quantidade mínima de itens que devem ser selecionados. Defina como 0 para o campo ser opcional ou maior que 1 para ser obrigatório. */
+  /** Quantidade mínima de itens que devem ser selecionados. Defina como maior que 1 para ser obrigatório. */
   atLeast?: number;
-  /** Lista de itens que será mostrada ao usuário. */
+  /** Lista de opções que será mostrada ao usuário. */
   options: Array<FieldOptionInterface>;
 }
 
@@ -39,16 +39,16 @@ export interface FieldOptionInterface {
   id: number;
   title: string;
   description?: string;
-  /** Preço adicional desta opção que será somado ao valor final. */
+  /** Preço adicional desta opção que será somado ao valor do prato. */
   price?: number;
-  /** Padrão: false */
+  /** @default false */
   selectedByDefault?: boolean;
 }
 
 export interface BagItemInterface extends PlateInterface {
   observations?: string;
   repetition?: number;
-  /** Preço final do item. */
+  /** Preço final do item gerado pelo PlateModal.tsx. */
   priceCache?: number;
   chosenFields?: Record<string, FieldOptionInterface[]>;
 }
