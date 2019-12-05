@@ -1,9 +1,12 @@
 {
-  "name": "ramo-cume-delivery",
-  "version": "1.0.0",
+  "homepage": "https://iagobruno.github.io/navbar-as-splashscreen-demo/",
+  "repository": "https://github.com/iagobruno/delivery-website-demo.git",
+  "author": "Iago Bruno <httpiago@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel ./src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "del-cli dist && parcel build src/index.html --public-url https://iagobruno.github.io/delivery-website-demo/",
+    "deploy": "yarn run build && gh-pages -d dist"
   },
   "dependencies": {
     "formik": "^2.0.6",
@@ -19,7 +22,9 @@
   "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
-    "@types/react-router-dom": "^5.1.0"
+    "@types/react-router-dom": "^5.1.0",
+    "del-cli": "^3.0.0",
+    "gh-pages": "^2.1.1"
   },
   "private": true
 }
