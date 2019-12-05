@@ -6,6 +6,7 @@ import store from '../store'
 import Home from '../pages/Home'
 import Menu from '../pages/Menu'
 import Checkout, { CheckoutButton } from '../pages/Checkout'
+import Orders from '../pages/Orders'
 import Header from './Header'
 import Footer from './Footer'
 import PlateModal from './PlateModal'
@@ -18,8 +19,9 @@ const App: React.FunctionComponent = () => (
       <main>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/cardapio" exact component={Menu} />
-          <Route path="/checkout" exact component={Checkout} />
+          <Route path="/cardapio" component={Menu} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/pedidos" component={Orders} />
         </Switch>
       </main>
 

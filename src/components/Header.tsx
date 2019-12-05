@@ -2,6 +2,8 @@ import React, { useMemo } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { configs } from '../data'
 import { checkIfBusinessIsOpen } from '../common/functions'
+import { relativeTime } from '../common/constants'
+import { useStore } from '../store'
 // @ts-ignore
 import WhatsappIcon from '../../static/logo-whatsapp.svg'
 
@@ -25,7 +27,7 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
                 {isOpenNow ? 'Aberto!' : 'Fechado'}
               </span>{' • '}
               {configs.randomPlace}{' • '}
-              Entrega {configs.averageDeliveryDuration}
+              Entrega {relativeTime.format(configs.averageDeliveryDuration, 'minutes')}
             </p>
           </div>
           <div className="col">
@@ -37,14 +39,27 @@ const Header: React.FunctionComponent<Props> = ({ mode = 'compact' }) => {
         </div>
       </header>
 
-      <nav className="navbar" role="navigation">
-        <ul className="center">
-          <li><NavLink exact to="/" className="matter-button-outlined">Página inicial</NavLink></li>
-          <li><NavLink to="/cardapio" className="matter-button-outlined">Cardápio</NavLink></li>
-        </ul>
-      </nav>
+      <NavBar />
     </>
   );
+}
+
+const NavBar: React.FC = () => {
+  const { state: { orders } } = useStore()
+  const undeliverableOrders = orders.filter(order => order.status !== 'delivered')
+
+  return (
+    <nav className="navbar" role="navigation">
+      <ul className="center">
+        <li><NavLink exact to="/" className="matter-button-outlined">Página inicial</NavLink></li>
+        <li><NavLink to="/cardapio" className="matter-button-outlined">Cardápio</NavLink></li>
+        <li><NavLink to="/pedidos" className="matter-button-outlined">
+          Meus pedidos
+          {undeliverableOrders.length > 0 ? ` (${undeliverableOrders.length})` : ''}
+        </NavLink></li>
+      </ul>
+    </nav>
+  )
 }
 
 export default Header

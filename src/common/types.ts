@@ -55,14 +55,21 @@ export interface BagItemInterface extends PlateInterface {
 
 export type PlateModalFormikValues = Record<string, FieldOptionInterface[]>
 
+export type OrderStatus =
+  'awaiting_payment' | 
+  'pending' |
+  'in_preparation' |
+  'ready_for_delivery' |
+  'on_the_way' |
+  'delivered' |
+  'refunded'
+
 export interface OrderInterface {
   plates: Array<BagItemInterface>;
   deliveryType: 'entrega' | 'retirada';
+  status: OrderStatus;
   price: number;
   paid: boolean;
-  /** Indica se o prato já está prot para ser entregue. */
-  ready: boolean;
-  delivered: boolean;
   /** Em minutos. */
   preparationTimeEstimate: number;
   createdAt: Date;

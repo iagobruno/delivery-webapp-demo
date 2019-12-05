@@ -99,10 +99,14 @@ export function convertArrayIntoObject<I extends string>(arr: I[], defaultValue:
   }), {})
 }
 
-export function convertOrderFieldsIntoDescription(fields: PlateModalFormikValues): string {
-  return Object.values(fields)
+export function convertOrderItensIntoDescription(
+  fields: PlateModalFormikValues | BagItemInterface[]
+): string {
+  const itens = Array.isArray(fields) ? fields : Object.values(fields)
+
+  return itens
     .flat(1)
-    .map(item => item.title)
+    .map(item => `${item.repetition > 1 ? `${item.repetition}x ` : ''}${item.title}`)
     .join(', ')
 }
 

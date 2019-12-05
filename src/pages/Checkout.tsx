@@ -3,7 +3,7 @@ import { useStore } from '../store'
 import { configs } from '../data'
 import { Link, useRouteMatch, useHistory } from 'react-router-dom'
 import { currency } from '../common/constants'
-import { sumAllPlatesPriceInBag, convertOrderFieldsIntoDescription, calcPercentage } from '../common/functions'
+import { sumAllPlatesPriceInBag, convertOrderItensIntoDescription, calcPercentage } from '../common/functions'
 // @ts-ignore
 import editIcon from '../../static/edit-icon.svg'
 // @ts-ignore
@@ -48,7 +48,7 @@ const CheckoutPage: React.FunctionComponent = () => {
     })
     actions.clearBag()
 
-    history.push('/orders')
+    history.push('/pedidos')
   }
 
   return (
@@ -75,7 +75,7 @@ const CheckoutPage: React.FunctionComponent = () => {
                     </strong>
                     <div className="order-item__details">
                       {Object.values(order.chosenFields!).flat(1).length > 0 && (
-                        <div>{convertOrderFieldsIntoDescription(order.chosenFields!)}.</div>
+                        <div>{convertOrderItensIntoDescription(order.chosenFields!)}.</div>
                       )}
                       {order.observations && (
                         <div>Obs.: {order.observations}</div>

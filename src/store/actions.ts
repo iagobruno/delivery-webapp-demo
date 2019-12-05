@@ -52,10 +52,18 @@ type CreateOrderArg = Pick<OrderInterface, 'price' | 'plates' | 'deliveryType'>
 export const createOrder: Action<CreateOrderArg> = ({ state }, order) => {
   state.orders.push({
     ...order,
-    preparationTimeEstimate: 10,
     paid: true,
-    ready: false,
-    delivered: false,
+    status: 'pending',
+    preparationTimeEstimate: 10,
     createdAt: new Date(),
   })
+}
+
+type UpdateOrderArg = {
+  index: number;
+  updatedItem: OrderInterface;
+}
+
+export const updateOrder: Action<UpdateOrderArg> = ({ state }, { index, updatedItem }) => {
+  state.orders.splice(index, 1, updatedItem)
 }

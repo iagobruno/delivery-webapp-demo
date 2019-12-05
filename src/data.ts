@@ -6,7 +6,8 @@ export const configs = {
   headerCover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8WLJx1EUnrollgkuyETBCaj-g-xC28_HRFYyxldu8vlJH3xoA',
   fakePhone: '+55 955-5893-1496',
   randomPlace: 'R. Raul Uchôa, 52 - Bom Futuro, Fortaleza - CE',
-  averageDeliveryDuration: '40-50 min',
+  /** Em minutos */
+  averageDeliveryDuration: 30,
   deliveryFee: 4.0,
   deliveryTime: {
     'Domingo': '18:30 às 23:59',
