@@ -9,7 +9,10 @@ type Props = {
 }
 
 const Price: React.FunctionComponent<Props> = ({ value, discount, className = '' }) => (<>
-  {typeof discount !== 'undefined' ? (
+  {discount === undefined || value === discount ? (
+    // Não tem desconto
+    value && <div className={`plate__price ${className}`}>{currency.format(value)}</div>
+  ) : (
     // Tem desconto
     <div className={`plate__discount ${className}`}>
       {value === undefined ? (
@@ -18,14 +21,11 @@ const Price: React.FunctionComponent<Props> = ({ value, discount, className = ''
       ) : (
         // Se tiver um preço inicial, mostrar o preço final com desconto
         <>
-          {currency.format(value - discount)}
           <div className={`plate__price`}>{currency.format(value)}</div>
+          {currency.format(value - discount)}
         </>
       )}
     </div>
-  ) : (
-    // Não tem desconto
-    value && <div className={`plate__price ${className}`}>{currency.format(value)}</div>
   )}
 </>);
 

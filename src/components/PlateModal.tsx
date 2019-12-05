@@ -96,26 +96,28 @@ const PlateModal: React.FunctionComponent = () => {
             </div>
 
             <div className="plate-modal__buttons">
-              <div className="plate-modal__repetition">
-                <button
-                  type="button"
-                  className="matter-button-outlined"
-                  onClick={() => setFieldValue('repetition', Math.max(1, values.repetition-1))}
-                  disabled={values.repetition <= 1}
-                  children="–"
-                />
-                <span>{values.repetition}</span>
-                <button
-                  type="button"
-                  className="matter-button-outlined"
-                  onClick={() => setFieldValue('repetition', values.repetition+1)}
-                  children="+"
-                />
-              </div>
-              <div>
+              <div style={{ flex: 1 }}>
+                <div className="plate-modal__repetition">
+                  <button
+                    type="button"
+                    className="matter-button-outlined"
+                    onClick={() => setFieldValue('repetition', Math.max(1, values.repetition-1))}
+                    disabled={values.repetition <= 1}
+                    children="–"
+                  />
+                  <span>{values.repetition}</span>
+                  <button
+                    type="button"
+                    className="matter-button-outlined"
+                    onClick={() => setFieldValue('repetition', values.repetition+1)}
+                    children="+"
+                  />
+                </div>
                 <div className="plate-modal__final-price">
                   {currency.format(calcPrice(plate.price, values as any, values.repetition, plate.discount))}
                 </div>
+              </div>
+              <div>
                 <button
                   type="submit"
                   className="plate-modal__form__submit matter-button-contained"

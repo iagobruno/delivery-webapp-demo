@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import Menu from '../pages/Menu'
 import Checkout, { CheckoutButton } from '../pages/Checkout'
 import Orders from '../pages/Orders'
+import ScrollToTop from '../components/ScrollToTop'
 import Header from './Header'
 import Footer from './Footer'
 import PlateModal from './PlateModal'
@@ -28,6 +29,7 @@ const App: React.FunctionComponent = () => (
       <Footer />
       <CheckoutButton />
       <PlateModal />
+      <ScrollToTop />
     </HashRouter>
   </Provider>
 )
