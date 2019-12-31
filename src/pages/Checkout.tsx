@@ -177,12 +177,14 @@ export default CheckoutPage
 export const CheckoutButton: React.FC = () => {
   const { state: { bag } } = useStore()
   const isCheckoutPage = useRouteMatch('/checkout')
+  // @ts-ignore
+  const count = bag.list.reduce((acc, plate) => (acc + plate.repetition!), 0)
 
   return (isCheckoutPage) ? null : (
     <Link to="/checkout">
       <button className="matter-button-contained floating-action-button" title="Sacola">
         <img src={shoppingIcon} />
-        <span>{bag.list.length}</span>
+        <span>{count}</span>
       </button>
     </Link>
   )
