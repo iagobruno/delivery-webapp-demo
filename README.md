@@ -3,7 +3,7 @@
 Um site de delivery inspirado no iFood para treinar minhas habilidades.
 
 <p align="center">
-  <a href="https://iagobruno.github.io/delivery-website-demo/"><img src="https://img.shields.io/badge/Online-Demo-brightgreen.svg"></a>
+  <a href="https://iagobruno.github.io/delivery-webapp-demo/"><img src="https://img.shields.io/badge/Online-Demo-brightgreen.svg"></a>
 </p>
 
 [![](static/screenshot.jpg)](https://iagobruno.github.io/delivery-website-demo/)
